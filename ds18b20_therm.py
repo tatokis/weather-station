@@ -6,8 +6,8 @@ import os, glob, time
 # w1-therm
 
 class DS18B20(object):
-    def __init__(self):        
-        self.device_file = glob.glob("/sys/bus/w1/devices/28*")[0] + "/w1_slave"
+    def __init__(self, sensor_id):
+        self.device_file = glob.glob("/sys/bus/w1/devices/" + sensor_id)[0] + "/w1_slave"
         
     def read_temp_raw(self):
         f = open(self.device_file, "r")

@@ -112,7 +112,7 @@ class oracle_apex_database:
 class weather_database:
     def __init__(self):
         self.db = mysql_database()
-        self.insert_template = "INSERT INTO WEATHER_MEASUREMENT (AMBIENT_TEMPERATURE, GROUND_TEMPERATURE, AIR_QUALITY, AIR_PRESSURE, HUMIDITY, WIND_DIRECTION, WIND_SPEED, WIND_GUST_SPEED, RAINFALL, CREATED) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+        self.insert_template = "INSERT INTO WEATHER_MEASUREMENT (AMBIENT_TEMPERATURE, AMBIENT_TEMPERATURE_HT, GROUND_TEMPERATURE, AIR_QUALITY, AIR_PRESSURE, HUMIDITY, WIND_DIRECTION, WIND_SPEED, WIND_GUST_SPEED, RAINFALL, CREATED) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         self.update_template =  "UPDATE WEATHER_MEASUREMENT SET REMOTE_ID=%s WHERE ID=%s;"
         self.upload_select_template = "SELECT * FROM WEATHER_MEASUREMENT WHERE REMOTE_ID IS NULL;"
 
@@ -126,8 +126,9 @@ class weather_database:
     def is_none(self, val):
         return val if val != None else "NULL"
 
-    def insert(self, ambient_temperature, ground_temperature, air_quality, air_pressure, humidity, wind_direction, wind_speed, wind_gust_speed, rainfall, created = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")):
+    def insert(self, ambient_temperature, ambient_temperature_ht, ground_temperature, air_quality, air_pressure, humidity, wind_direction, wind_speed, wind_gust_speed, rainfall, created = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")):
         params = ( ambient_temperature,
+            ambient_temperature_ht,
             ground_temperature,
             air_quality,
             air_pressure,
