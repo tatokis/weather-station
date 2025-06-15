@@ -104,7 +104,9 @@ class wind_direction(object):
             else:
                 print("Could not determine wind direction for ADC reading: %s" % adc_value)
 
-        return self.get_average(data)
+        # 90 deg offset for our station
+        average = self.get_average(data) + 90
+        return average - 360 if average >= 360 else average
 
 if __name__ == "__main__":
     obj = wind_direction(0, "wind_direction.json")
