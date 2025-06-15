@@ -167,7 +167,7 @@ class interrupt_daemon(object):
     def start(self):
         try:
             self.daemon_pid = None
-            self.daemonize()
+            #self.daemonize()
             self.daemon_pid = os.getpid()
             print("PID: %d" % self.daemon_pid)
             self.setup()

@@ -1,0 +1,10 @@
+[Unit]
+Description=Weather Station Interrupt Daemon
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=interrupt_daemon.py start
+
+[Install]
+WantedBy=multi-user.target
